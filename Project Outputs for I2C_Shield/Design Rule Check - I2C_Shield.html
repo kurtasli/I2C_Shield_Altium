@@ -1,0 +1,594 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD22\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">30.09.2024</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">22:31:36</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc" class="file"><acronym title="D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc">D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">83</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">PCB Health Issues:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+</table>
+</td>
+</table><a name="IDXQCS3F4R3RLCCEINYN41T1NXLPIW2WCM4YJGA1OVRLXLVH4Z2U"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLAC2HWBUHWMVBHSRQIK3X4HSBHB3K4GPHBU2FJOKZZDVKAROFVJF">Clearance Constraint (Gap=0.127mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFHJQNJR4QBBPKTTDTETWHGOZXBBJ1HB3TTOK10OCYEGM5FMEXSQ">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLIHOVPKUALGCHNVC1JDFZDTRUGTW4WBRBQWJK1E0U5KC32H144ZH">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPXAPTV2ZRKRMHCZ3ECB5NM03BLQWX4KKPNSUF5LOMQDTO44E4Y5C">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFQ4HDTBFOSSIJKL3FUCCN3DX3MIDIJX0XOSOH2JJTAN5JVDSUADC">Width Constraint (Min=0.254mm) (Max=1.27mm) (Preferred=0.508mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNMQYKSA2UPT4OXWO4FLHWSYNIKZJKLRDITJ2RTEH4AI3YDGKN4SD">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGPU5ZRTAFTRZJ1CXMTYLC31DGLTA4AELFDJYJJOMDN0MESHZTJ1P">Hole Size Constraint (Min=0.2mm) (Max=6.3mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFZYQE5GRXLZIIZNFQYAEFLIX5PRBUES5AD1QKFPHMVRPK11WJ2BJ">Hole To Hole Clearance (Gap=0.6mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID5IOAZEGC4ZNAN3AINJJDR3YKSH4UYY2MBDBDGBEYUAN44HQG2Z5O">Minimum Solder Mask Sliver (Gap=0.1mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGJM5UEYFQEOQK0GJIO1IJSPNQOBKGRJUL0BU25FGM142PA4SZBPL">Minimum Solder Mask Sliver (Gap=0.095mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZLKLLXRLCT0GJKRJ0HRY2U2JZNB24F4L1GRXQ1KDGLP0DE2XRLRI">Silk To Solder Mask (Clearance=0.15mm) (IsPad),(All)</a></td>
+<td class="column2">83</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3GBIMGPZ4KCNFTVYRPIAIX2RPEVBMC3EL1LDDOOPGGMF1TA2I15G">Silk to Silk (Clearance=0.15mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1SZL4SCLSQUNIHCVFDJITT0Q1MM131HO0D0L5CP30YKPU21NSYJM">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTIIKT0XZRC0CD5JO0GKI2CPTLE41AVO3YF13QNBDZUSLSMGYLG2F">Height Constraint (Min=0mm) (Max=100mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">83</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">PCB Health Issues</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><a name="IDZLKLLXRLCT0GJKRJ0HRY2U2JZNB24F4L1GRXQ1KDGLP0DE2XRLRI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.15mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2304.625mil|Location2.X=2311.781mil|Location1.Y=1903.073mil|Location2.Y=1910.228mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2304.625mil|Location2.X=2311.781mil|Location1.Y=1903.073mil|Location2.Y=1910.228mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.15mm) Between Arc (22.007mm,24.675mm) on Top Overlay And Pad C4-1(21.4mm,24.05mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2761.997mil|Location2.X=2769.153mil|Location1.Y=1384.857mil|Location2.Y=1392.012mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2761.997mil|Location2.X=2769.153mil|Location1.Y=1384.857mil|Location2.Y=1392.012mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.15mm) Between Pad C5-2(33.25mm,11.925mm) on Top Layer And Track (33.7mm,11.225mm)(33.7mm,14.5mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2762.101mil|Location2.X=2769.814mil|Location1.Y=1384.312mil|Location2.Y=1393.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2762.101mil|Location2.X=2769.814mil|Location1.Y=1384.312mil|Location2.Y=1393.9mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.062mm &lt; 0.15mm) Between Pad C5-2(33.25mm,11.925mm) on Top Layer And Track (33.7mm,11.225mm)(39.025mm,11.225mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.062mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2533.803mil|Location2.X=2540.959mil|Location1.Y=1945.901mil|Location2.Y=1953.056mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2533.803mil|Location2.X=2540.959mil|Location1.Y=1945.901mil|Location2.Y=1953.056mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.042mm &lt; 0.15mm) Between Pad C6-2(28.5mm,25.876mm) on Top Layer And Track (27.757mm,25.103mm)(27.757mm,28.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.042mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3173.706mil|Location2.X=3180.862mil|Location1.Y=1949.348mil|Location2.Y=1956.503mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3173.706mil|Location2.X=3180.862mil|Location1.Y=1949.348mil|Location2.Y=1956.503mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.085mm &lt; 0.15mm) Between Pad D2-1(44.775mm,25.963mm) on Top Layer And Track (43.99mm,25.313mm)(43.99mm,28.513mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.085mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3173.706mil|Location2.X=3180.862mil|Location1.Y=2024.151mil|Location2.Y=2031.306mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3173.706mil|Location2.X=3180.862mil|Location1.Y=2024.151mil|Location2.Y=2031.306mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.085mm &lt; 0.15mm) Between Pad D2-2(44.775mm,27.863mm) on Top Layer And Track (43.99mm,25.313mm)(43.99mm,28.513mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.085mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3048.415mil|Location2.X=3055.57mil|Location1.Y=2175.369mil|Location2.Y=2182.524mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3048.415mil|Location2.X=3055.57mil|Location1.Y=2175.369mil|Location2.Y=2182.524mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.068mm &lt; 0.15mm) Between Pad D3-1(40.55mm,32.038mm) on Top Layer And Track (38mm,31.27mm)(41.2mm,31.27mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.068mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2973.611mil|Location2.X=2980.767mil|Location1.Y=2175.369mil|Location2.Y=2182.524mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2973.611mil|Location2.X=2980.767mil|Location1.Y=2175.369mil|Location2.Y=2182.524mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.068mm &lt; 0.15mm) Between Pad D3-2(38.65mm,32.038mm) on Top Layer And Track (38mm,31.27mm)(41.2mm,31.27mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.068mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2822.369mil|Location2.X=2829.524mil|Location1.Y=1949.348mil|Location2.Y=1956.503mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2822.369mil|Location2.X=2829.524mil|Location1.Y=1949.348mil|Location2.Y=1956.503mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.017mm &lt; 0.15mm) Between Pad D5-1(34.5mm,25.963mm) on Top Layer And Track (35.217mm,25.313mm)(35.217mm,28.513mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.017mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2822.369mil|Location2.X=2829.524mil|Location1.Y=2024.151mil|Location2.Y=2031.306mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2822.369mil|Location2.X=2829.524mil|Location1.Y=2024.151mil|Location2.Y=2031.306mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.017mm &lt; 0.15mm) Between Pad D5-2(34.5mm,27.863mm) on Top Layer And Track (35.217mm,25.313mm)(35.217mm,28.513mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.017mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2076.809mil|Location2.X=2081.746mil|Location1.Y=1080.229mil|Location2.Y=1085.166mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2076.809mil|Location2.X=2081.746mil|Location1.Y=1080.229mil|Location2.Y=1085.166mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.15mm) Between Pad J1-1(16.44mm,2.54mm) on Multi-Layer And Text "W" (18.75mm,2.75mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2151.24mil|Location2.X=2156.177mil|Location1.Y=1059.519mil|Location2.Y=1064.456mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2151.24mil|Location2.X=2156.177mil|Location1.Y=1059.519mil|Location2.Y=1064.456mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.15mm) Between Pad J1-2(18.98mm,2.54mm) on Multi-Layer And Text "W" (18.75mm,2.75mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2197.161mil|Location2.X=2204.316mil|Location1.Y=2028.262mil|Location2.Y=2035.417mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2197.161mil|Location2.X=2204.316mil|Location1.Y=2028.262mil|Location2.Y=2035.417mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.056mm &lt; 0.15mm) Between Pad R10-1(19.7mm,28.1mm) on Bottom Layer And Track (19.2mm,25.9mm)(19.2mm,28.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.056mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2198.269mil|Location2.X=2205.425mil|Location1.Y=2067.587mil|Location2.Y=2074.742mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2198.269mil|Location2.X=2205.425mil|Location1.Y=2067.587mil|Location2.Y=2074.742mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.067mm &lt; 0.15mm) Between Pad R10-1(19.7mm,28.1mm) on Bottom Layer And Track (19.2mm,28.7mm)(20.2mm,28.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.067mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2230.377mil|Location2.X=2237.533mil|Location1.Y=2028.262mil|Location2.Y=2035.417mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2230.377mil|Location2.X=2237.533mil|Location1.Y=2028.262mil|Location2.Y=2035.417mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.056mm &lt; 0.15mm) Between Pad R10-1(19.7mm,28.1mm) on Bottom Layer And Track (20.2mm,25.9mm)(20.2mm,28.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.056mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2197.161mil|Location2.X=2204.316mil|Location1.Y=1965.262mil|Location2.Y=1972.417mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2197.161mil|Location2.X=2204.316mil|Location1.Y=1965.262mil|Location2.Y=1972.417mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.056mm &lt; 0.15mm) Between Pad R10-2(19.7mm,26.5mm) on Bottom Layer And Track (19.2mm,25.9mm)(19.2mm,28.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.056mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2229.269mil|Location2.X=2236.425mil|Location1.Y=1963.937mil|Location2.Y=1971.092mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2229.269mil|Location2.X=2236.425mil|Location1.Y=1963.937mil|Location2.Y=1971.092mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.067mm &lt; 0.15mm) Between Pad R10-2(19.7mm,26.5mm) on Bottom Layer And Track (19.2mm,25.9mm)(20.2mm,25.9mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.067mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2230.377mil|Location2.X=2237.533mil|Location1.Y=1965.262mil|Location2.Y=1972.417mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2230.377mil|Location2.X=2237.533mil|Location1.Y=1965.262mil|Location2.Y=1972.417mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.056mm &lt; 0.15mm) Between Pad R10-2(19.7mm,26.5mm) on Bottom Layer And Track (20.2mm,25.9mm)(20.2mm,28.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.056mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1888.966mil|Location2.X=1896.121mil|Location1.Y=2244.108mil|Location2.Y=2251.264mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1888.966mil|Location2.X=1896.121mil|Location1.Y=2244.108mil|Location2.Y=2251.264mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R1-1(10.75mm,33.45mm) on Top Layer And Track (11.55mm,30.9mm)(11.55mm,34.1mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1833.848mil|Location2.X=1841.003mil|Location1.Y=2244.108mil|Location2.Y=2251.264mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1833.848mil|Location2.X=1841.003mil|Location1.Y=2244.108mil|Location2.Y=2251.264mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R1-1(10.75mm,33.45mm) on Top Layer And Track (9.95mm,30.9mm)(9.95mm,34.1mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2347.627mil|Location2.X=2354.783mil|Location1.Y=2220.486mil|Location2.Y=2227.642mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2347.627mil|Location2.X=2354.783mil|Location1.Y=2220.486mil|Location2.Y=2227.642mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R11-1(23.8mm,32.85mm) on Bottom Layer And Track (23mm,30.3mm)(23mm,33.5mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2402.745mil|Location2.X=2409.901mil|Location1.Y=2220.486mil|Location2.Y=2227.642mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2402.745mil|Location2.X=2409.901mil|Location1.Y=2220.486mil|Location2.Y=2227.642mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R11-1(23.8mm,32.85mm) on Bottom Layer And Track (24.6mm,30.3mm)(24.6mm,33.5mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2347.627mil|Location2.X=2354.783mil|Location1.Y=2145.683mil|Location2.Y=2152.839mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2347.627mil|Location2.X=2354.783mil|Location1.Y=2145.683mil|Location2.Y=2152.839mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R11-2(23.8mm,30.95mm) on Bottom Layer And Track (23mm,30.3mm)(23mm,33.5mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2402.745mil|Location2.X=2409.901mil|Location1.Y=2145.683mil|Location2.Y=2152.839mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2402.745mil|Location2.X=2409.901mil|Location1.Y=2145.683mil|Location2.Y=2152.839mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R11-2(23.8mm,30.95mm) on Bottom Layer And Track (24.6mm,30.3mm)(24.6mm,33.5mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1888.966mil|Location2.X=1896.121mil|Location1.Y=2169.305mil|Location2.Y=2176.461mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1888.966mil|Location2.X=1896.121mil|Location1.Y=2169.305mil|Location2.Y=2176.461mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R1-2(10.75mm,31.55mm) on Top Layer And Track (11.55mm,30.9mm)(11.55mm,34.1mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1833.848mil|Location2.X=1841.003mil|Location1.Y=2169.305mil|Location2.Y=2176.461mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1833.848mil|Location2.X=1841.003mil|Location1.Y=2169.305mil|Location2.Y=2176.461mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R1-2(10.75mm,31.55mm) on Top Layer And Track (9.95mm,30.9mm)(9.95mm,34.1mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1676.367mil|Location2.X=1683.523mil|Location1.Y=2161.431mil|Location2.Y=2168.587mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1676.367mil|Location2.X=1683.523mil|Location1.Y=2161.431mil|Location2.Y=2168.587mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R2-1(6.75mm,31.35mm) on Top Layer And Track (5.95mm,30.7mm)(5.95mm,33.9mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1731.486mil|Location2.X=1738.641mil|Location1.Y=2161.431mil|Location2.Y=2168.587mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1731.486mil|Location2.X=1738.641mil|Location1.Y=2161.431mil|Location2.Y=2168.587mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R2-1(6.75mm,31.35mm) on Top Layer And Track (7.55mm,30.7mm)(7.55mm,33.9mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1676.367mil|Location2.X=1683.523mil|Location1.Y=2236.234mil|Location2.Y=2243.39mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1676.367mil|Location2.X=1683.523mil|Location1.Y=2236.234mil|Location2.Y=2243.39mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R2-2(6.75mm,33.25mm) on Top Layer And Track (5.95mm,30.7mm)(5.95mm,33.9mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1731.486mil|Location2.X=1738.641mil|Location1.Y=2236.234mil|Location2.Y=2243.39mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1731.486mil|Location2.X=1738.641mil|Location1.Y=2236.234mil|Location2.Y=2243.39mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R2-2(6.75mm,33.25mm) on Top Layer And Track (7.55mm,30.7mm)(7.55mm,33.9mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1676.367mil|Location2.X=1683.523mil|Location1.Y=1594.502mil|Location2.Y=1601.658mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1676.367mil|Location2.X=1683.523mil|Location1.Y=1594.502mil|Location2.Y=1601.658mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R3-1(6.75mm,16.95mm) on Top Layer And Track (5.95mm,14.4mm)(5.95mm,17.6mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1731.486mil|Location2.X=1738.641mil|Location1.Y=1594.502mil|Location2.Y=1601.658mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1731.486mil|Location2.X=1738.641mil|Location1.Y=1594.502mil|Location2.Y=1601.658mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R3-1(6.75mm,16.95mm) on Top Layer And Track (7.55mm,14.4mm)(7.55mm,17.6mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1676.367mil|Location2.X=1683.523mil|Location1.Y=1519.699mil|Location2.Y=1526.854mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1676.367mil|Location2.X=1683.523mil|Location1.Y=1519.699mil|Location2.Y=1526.854mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R3-2(6.75mm,15.05mm) on Top Layer And Track (5.95mm,14.4mm)(5.95mm,17.6mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1731.486mil|Location2.X=1738.641mil|Location1.Y=1519.699mil|Location2.Y=1526.854mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1731.486mil|Location2.X=1738.641mil|Location1.Y=1519.699mil|Location2.Y=1526.854mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R3-2(6.75mm,15.05mm) on Top Layer And Track (7.55mm,14.4mm)(7.55mm,17.6mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1739.36mil|Location2.X=1746.515mil|Location1.Y=984.266mil|Location2.Y=991.421mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1739.36mil|Location2.X=1746.515mil|Location1.Y=984.266mil|Location2.Y=991.421mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R4-1(7.3mm,1.8mm) on Top Layer And Track (4.75mm,1mm)(7.95mm,1mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1711.801mil|Location2.X=1718.956mil|Location1.Y=1039.384mil|Location2.Y=1046.539mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1711.801mil|Location2.X=1718.956mil|Location1.Y=1039.384mil|Location2.Y=1046.539mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R4-1(7.3mm,1.8mm) on Top Layer And Track (4.75mm,2.6mm)(7.95mm,2.6mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1664.556mil|Location2.X=1671.712mil|Location1.Y=984.266mil|Location2.Y=991.421mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1664.556mil|Location2.X=1671.712mil|Location1.Y=984.266mil|Location2.Y=991.421mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R4-2(5.4mm,1.8mm) on Top Layer And Track (4.75mm,1mm)(7.95mm,1mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1636.997mil|Location2.X=1644.153mil|Location1.Y=1039.384mil|Location2.Y=1046.539mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1636.997mil|Location2.X=1644.153mil|Location1.Y=1039.384mil|Location2.Y=1046.539mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R4-2(5.4mm,1.8mm) on Top Layer And Track (4.75mm,2.6mm)(7.95mm,2.6mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.006mil|Location2.X=3118.161mil|Location1.Y=2024.151mil|Location2.Y=2031.306mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.006mil|Location2.X=3118.161mil|Location1.Y=2024.151mil|Location2.Y=2031.306mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R5-1(43.189mm,27.863mm) on Top Layer And Track (42.389mm,25.313mm)(42.389mm,28.513mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3166.124mil|Location2.X=3173.279mil|Location1.Y=2024.151mil|Location2.Y=2031.306mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3166.124mil|Location2.X=3173.279mil|Location1.Y=2024.151mil|Location2.Y=2031.306mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R5-1(43.189mm,27.863mm) on Top Layer And Track (43.99mm,25.313mm)(43.99mm,28.513mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.006mil|Location2.X=3118.161mil|Location1.Y=1949.348mil|Location2.Y=1956.503mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.006mil|Location2.X=3118.161mil|Location1.Y=1949.348mil|Location2.Y=1956.503mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R5-2(43.189mm,25.963mm) on Top Layer And Track (42.389mm,25.313mm)(42.389mm,28.513mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3166.124mil|Location2.X=3173.279mil|Location1.Y=1949.348mil|Location2.Y=1956.503mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3166.124mil|Location2.X=3173.279mil|Location1.Y=1949.348mil|Location2.Y=1956.503mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R5-2(43.189mm,25.963mm) on Top Layer And Track (43.99mm,25.313mm)(43.99mm,28.513mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2973.611mil|Location2.X=2980.767mil|Location1.Y=2113.004mil|Location2.Y=2120.16mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2973.611mil|Location2.X=2980.767mil|Location1.Y=2113.004mil|Location2.Y=2120.16mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R6-1(38.65mm,30.47mm) on Top Layer And Track (38mm,29.67mm)(41.2mm,29.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2946.052mil|Location2.X=2953.208mil|Location1.Y=2168.122mil|Location2.Y=2175.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2946.052mil|Location2.X=2953.208mil|Location1.Y=2168.122mil|Location2.Y=2175.278mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R6-1(38.65mm,30.47mm) on Top Layer And Track (38mm,31.27mm)(41.2mm,31.27mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3048.415mil|Location2.X=3055.57mil|Location1.Y=2113.004mil|Location2.Y=2120.16mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3048.415mil|Location2.X=3055.57mil|Location1.Y=2113.004mil|Location2.Y=2120.16mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R6-2(40.55mm,30.47mm) on Top Layer And Track (38mm,29.67mm)(41.2mm,29.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3020.856mil|Location2.X=3028.011mil|Location1.Y=2168.122mil|Location2.Y=2175.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3020.856mil|Location2.X=3028.011mil|Location1.Y=2168.122mil|Location2.Y=2175.278mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R6-2(40.55mm,30.47mm) on Top Layer And Track (38mm,31.27mm)(41.2mm,31.27mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3048.415mil|Location2.X=3055.57mil|Location1.Y=1830.723mil|Location2.Y=1837.878mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3048.415mil|Location2.X=3055.57mil|Location1.Y=1830.723mil|Location2.Y=1837.878mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R7-1(40.55mm,23.3mm) on Top Layer And Track (38mm,22.5mm)(41.2mm,22.5mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3020.856mil|Location2.X=3028.011mil|Location1.Y=1885.841mil|Location2.Y=1892.996mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3020.856mil|Location2.X=3028.011mil|Location1.Y=1885.841mil|Location2.Y=1892.996mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R7-1(40.55mm,23.3mm) on Top Layer And Track (38mm,24.1mm)(41.2mm,24.1mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2973.611mil|Location2.X=2980.767mil|Location1.Y=1830.723mil|Location2.Y=1837.878mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2973.611mil|Location2.X=2980.767mil|Location1.Y=1830.723mil|Location2.Y=1837.878mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R7-2(38.65mm,23.3mm) on Top Layer And Track (38mm,22.5mm)(41.2mm,22.5mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2946.052mil|Location2.X=2953.208mil|Location1.Y=1885.841mil|Location2.Y=1892.996mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2946.052mil|Location2.X=2953.208mil|Location1.Y=1885.841mil|Location2.Y=1892.996mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R7-2(38.65mm,23.3mm) on Top Layer And Track (38mm,24.1mm)(41.2mm,24.1mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2828.607mil|Location2.X=2835.762mil|Location1.Y=2024.151mil|Location2.Y=2031.306mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2828.607mil|Location2.X=2835.762mil|Location1.Y=2024.151mil|Location2.Y=2031.306mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R8-1(36.017mm,27.863mm) on Top Layer And Track (35.217mm,25.313mm)(35.217mm,28.513mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2883.725mil|Location2.X=2890.88mil|Location1.Y=2024.151mil|Location2.Y=2031.306mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2883.725mil|Location2.X=2890.88mil|Location1.Y=2024.151mil|Location2.Y=2031.306mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R8-1(36.017mm,27.863mm) on Top Layer And Track (36.817mm,25.313mm)(36.817mm,28.513mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2828.607mil|Location2.X=2835.762mil|Location1.Y=1949.348mil|Location2.Y=1956.503mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2828.607mil|Location2.X=2835.762mil|Location1.Y=1949.348mil|Location2.Y=1956.503mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R8-2(36.017mm,25.963mm) on Top Layer And Track (35.217mm,25.313mm)(35.217mm,28.513mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2883.725mil|Location2.X=2890.88mil|Location1.Y=1949.348mil|Location2.Y=1956.503mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2883.725mil|Location2.X=2890.88mil|Location1.Y=1949.348mil|Location2.Y=1956.503mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.15mm) Between Pad R8-2(36.017mm,25.963mm) on Top Layer And Track (36.817mm,25.313mm)(36.817mm,28.513mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2193.224mil|Location2.X=2200.379mil|Location1.Y=2130.616mil|Location2.Y=2137.772mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2193.224mil|Location2.X=2200.379mil|Location1.Y=2130.616mil|Location2.Y=2137.772mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.056mm &lt; 0.15mm) Between Pad R9-1(19.6mm,30.7mm) on Bottom Layer And Track (19.1mm,30.1mm)(19.1mm,32.9mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.056mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2225.332mil|Location2.X=2232.487mil|Location1.Y=2129.291mil|Location2.Y=2136.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2225.332mil|Location2.X=2232.487mil|Location1.Y=2129.291mil|Location2.Y=2136.447mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.067mm &lt; 0.15mm) Between Pad R9-1(19.6mm,30.7mm) on Bottom Layer And Track (19.1mm,30.1mm)(20.1mm,30.1mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.067mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2226.44mil|Location2.X=2233.596mil|Location1.Y=2130.616mil|Location2.Y=2137.772mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2226.44mil|Location2.X=2233.596mil|Location1.Y=2130.616mil|Location2.Y=2137.772mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.056mm &lt; 0.15mm) Between Pad R9-1(19.6mm,30.7mm) on Bottom Layer And Track (20.1mm,30.1mm)(20.1mm,32.9mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.056mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2193.224mil|Location2.X=2200.379mil|Location1.Y=2193.616mil|Location2.Y=2200.772mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2193.224mil|Location2.X=2200.379mil|Location1.Y=2193.616mil|Location2.Y=2200.772mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.056mm &lt; 0.15mm) Between Pad R9-2(19.6mm,32.3mm) on Bottom Layer And Track (19.1mm,30.1mm)(19.1mm,32.9mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.056mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2194.332mil|Location2.X=2201.487mil|Location1.Y=2232.941mil|Location2.Y=2240.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2194.332mil|Location2.X=2201.487mil|Location1.Y=2232.941mil|Location2.Y=2240.097mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.067mm &lt; 0.15mm) Between Pad R9-2(19.6mm,32.3mm) on Bottom Layer And Track (19.1mm,32.9mm)(20.1mm,32.9mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.067mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2226.44mil|Location2.X=2233.596mil|Location1.Y=2193.616mil|Location2.Y=2200.772mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2226.44mil|Location2.X=2233.596mil|Location1.Y=2193.616mil|Location2.Y=2200.772mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.056mm &lt; 0.15mm) Between Pad R9-2(19.6mm,32.3mm) on Bottom Layer And Track (20.1mm,30.1mm)(20.1mm,32.9mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.056mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1878.966mil|Location2.X=1886.121mil|Location1.Y=2376.361mil|Location2.Y=2383.517mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1878.966mil|Location2.X=1886.121mil|Location1.Y=2376.361mil|Location2.Y=2383.517mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.15mm) Between Pad SW1-(10.671mm,36.809mm) on Top Layer And Track (11.271mm,34.034mm)(11.271mm,37.434mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1878.966mil|Location2.X=1886.121mil|Location1.Y=2291.716mil|Location2.Y=2298.871mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1878.966mil|Location2.X=1886.121mil|Location1.Y=2291.716mil|Location2.Y=2298.871mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.15mm) Between Pad SW1-1(10.671mm,34.659mm) on Top Layer And Track (11.271mm,34.034mm)(11.271mm,37.434mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1680.147mil|Location2.X=1687.302mil|Location1.Y=2291.716mil|Location2.Y=2298.871mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1680.147mil|Location2.X=1687.302mil|Location1.Y=2291.716mil|Location2.Y=2298.871mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.15mm) Between Pad SW1-2(6.671mm,34.659mm) on Top Layer And Track (6.071mm,34.034mm)(6.071mm,37.434mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1680.147mil|Location2.X=1687.302mil|Location1.Y=2376.361mil|Location2.Y=2383.517mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1680.147mil|Location2.X=1687.302mil|Location1.Y=2376.361mil|Location2.Y=2383.517mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.15mm) Between Pad SW1-4(6.671mm,36.809mm) on Top Layer And Track (6.071mm,34.034mm)(6.071mm,37.434mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1878.966mil|Location2.X=1886.121mil|Location1.Y=1737.219mil|Location2.Y=1744.374mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1878.966mil|Location2.X=1886.121mil|Location1.Y=1737.219mil|Location2.Y=1744.374mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.15mm) Between Pad SW2-(10.671mm,20.575mm) on Top Layer And Track (11.271mm,17.8mm)(11.271mm,21.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1878.966mil|Location2.X=1886.121mil|Location1.Y=1652.573mil|Location2.Y=1659.728mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1878.966mil|Location2.X=1886.121mil|Location1.Y=1652.573mil|Location2.Y=1659.728mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.15mm) Between Pad SW2-1(10.671mm,18.425mm) on Top Layer And Track (11.271mm,17.8mm)(11.271mm,21.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1680.147mil|Location2.X=1687.302mil|Location1.Y=1652.573mil|Location2.Y=1659.728mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1680.147mil|Location2.X=1687.302mil|Location1.Y=1652.573mil|Location2.Y=1659.728mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.15mm) Between Pad SW2-2(6.671mm,18.425mm) on Top Layer And Track (6.071mm,17.8mm)(6.071mm,21.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1680.147mil|Location2.X=1687.302mil|Location1.Y=1737.219mil|Location2.Y=1744.374mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1680.147mil|Location2.X=1687.302mil|Location1.Y=1737.219mil|Location2.Y=1744.374mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.15mm) Between Pad SW2-4(6.671mm,20.575mm) on Top Layer And Track (6.071mm,17.8mm)(6.071mm,21.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2338.018mil|Location2.X=2342.955mil|Location1.Y=1936.375mil|Location2.Y=1941.312mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2338.018mil|Location2.X=2342.955mil|Location1.Y=1936.375mil|Location2.Y=1941.312mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.15mm) Between Pad U1-1(23.007mm,25.828mm) on Top Layer And Track (22.257mm,25.825mm)(22.98mm,25.103mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2354.822mil|Location2.X=2361.977mil|Location1.Y=1933.248mil|Location2.Y=1940.403mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2354.822mil|Location2.X=2361.977mil|Location1.Y=1933.248mil|Location2.Y=1940.403mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.103mm &lt; 0.15mm) Between Pad U1-1(23.007mm,25.828mm) on Top Layer And Track (22.98mm,25.103mm)(27.757mm,25.103mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2427.657mil|Location2.X=2434.812mil|Location1.Y=2068.828mil|Location2.Y=2075.984mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2427.657mil|Location2.X=2434.812mil|Location1.Y=2068.828mil|Location2.Y=2075.984mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.105mm &lt; 0.15mm) Between Pad U1-10(25.407mm,28.023mm) on Top Layer And Track (22.257mm,28.75mm)(27.757mm,28.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2396.161mil|Location2.X=2403.316mil|Location1.Y=2068.828mil|Location2.Y=2075.984mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2396.161mil|Location2.X=2403.316mil|Location1.Y=2068.828mil|Location2.Y=2075.984mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.105mm &lt; 0.15mm) Between Pad U1-11(24.607mm,28.023mm) on Top Layer And Track (22.257mm,28.75mm)(27.757mm,28.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2364.665mil|Location2.X=2371.82mil|Location1.Y=2068.828mil|Location2.Y=2075.984mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2364.665mil|Location2.X=2371.82mil|Location1.Y=2068.828mil|Location2.Y=2075.984mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.105mm &lt; 0.15mm) Between Pad U1-12(23.807mm,28.023mm) on Top Layer And Track (22.257mm,28.75mm)(27.757mm,28.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2333.169mil|Location2.X=2340.324mil|Location1.Y=2068.828mil|Location2.Y=2075.984mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2333.169mil|Location2.X=2340.324mil|Location1.Y=2068.828mil|Location2.Y=2075.984mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.105mm &lt; 0.15mm) Between Pad U1-13(23.007mm,28.023mm) on Top Layer And Track (22.257mm,28.75mm)(27.757mm,28.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2317.027mil|Location2.X=2324.182mil|Location1.Y=1990.187mil|Location2.Y=1997.342mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2317.027mil|Location2.X=2324.182mil|Location1.Y=1990.187mil|Location2.Y=1997.342mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.03mm &lt; 0.15mm) Between Pad U1-14(22.91mm,26.925mm) on Top Layer And Track (22.257mm,25.825mm)(22.257mm,28.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.03mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2386.318mil|Location2.X=2393.474mil|Location1.Y=1933.248mil|Location2.Y=1940.403mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2386.318mil|Location2.X=2393.474mil|Location1.Y=1933.248mil|Location2.Y=1940.403mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.103mm &lt; 0.15mm) Between Pad U1-2(23.807mm,25.828mm) on Top Layer And Track (22.98mm,25.103mm)(27.757mm,25.103mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2417.814mil|Location2.X=2424.97mil|Location1.Y=1933.248mil|Location2.Y=1940.403mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2417.814mil|Location2.X=2424.97mil|Location1.Y=1933.248mil|Location2.Y=1940.403mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.103mm &lt; 0.15mm) Between Pad U1-3(24.607mm,25.828mm) on Top Layer And Track (22.98mm,25.103mm)(27.757mm,25.103mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2449.31mil|Location2.X=2456.466mil|Location1.Y=1933.248mil|Location2.Y=1940.403mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2449.31mil|Location2.X=2456.466mil|Location1.Y=1933.248mil|Location2.Y=1940.403mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.103mm &lt; 0.15mm) Between Pad U1-4(25.407mm,25.828mm) on Top Layer And Track (22.98mm,25.103mm)(27.757mm,25.103mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2480.806mil|Location2.X=2487.962mil|Location1.Y=1933.248mil|Location2.Y=1940.403mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2480.806mil|Location2.X=2487.962mil|Location1.Y=1933.248mil|Location2.Y=1940.403mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.103mm &lt; 0.15mm) Between Pad U1-5(26.207mm,25.828mm) on Top Layer And Track (22.98mm,25.103mm)(27.757mm,25.103mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2512.302mil|Location2.X=2519.458mil|Location1.Y=1933.248mil|Location2.Y=1940.403mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2512.302mil|Location2.X=2519.458mil|Location1.Y=1933.248mil|Location2.Y=1940.403mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.103mm &lt; 0.15mm) Between Pad U1-6(27.007mm,25.828mm) on Top Layer And Track (22.98mm,25.103mm)(27.757mm,25.103mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2528.444mil|Location2.X=2535.599mil|Location1.Y=1990.187mil|Location2.Y=1997.342mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2528.444mil|Location2.X=2535.599mil|Location1.Y=1990.187mil|Location2.Y=1997.342mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.03mm &lt; 0.15mm) Between Pad U1-7(27.105mm,26.925mm) on Top Layer And Track (27.757mm,25.103mm)(27.757mm,28.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.03mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2490.649mil|Location2.X=2497.804mil|Location1.Y=2068.828mil|Location2.Y=2075.984mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2490.649mil|Location2.X=2497.804mil|Location1.Y=2068.828mil|Location2.Y=2075.984mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.105mm &lt; 0.15mm) Between Pad U1-8(27.007mm,28.023mm) on Top Layer And Track (22.257mm,28.75mm)(27.757mm,28.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.153mil|Location2.X=2466.308mil|Location1.Y=2068.828mil|Location2.Y=2075.984mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Hardware Design\Projects\InProgress\I2C_Shield\I2C_Shield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.153mil|Location2.X=2466.308mil|Location1.Y=2068.828mil|Location2.Y=2075.984mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.105mm &lt; 0.15mm) Between Pad U1-9(26.207mm,28.023mm) on Top Layer And Track (22.257mm,28.75mm)(27.757mm,28.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.105mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

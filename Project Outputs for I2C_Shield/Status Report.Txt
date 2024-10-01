@@ -1,0 +1,11 @@
+Output: Generates pick and place files
+Type  : Pick Place
+From  : Variant [[No Variations]] of PCB Document [I2C_Shield.PcbDoc]
+   Generated File[Pick Place for I2C_Shield.txt]
+   Generated File[Pick Place for I2C_Shield.csv]
+
+
+Files Generated   : 2
+Documents Printed : 0
+
+Finished Output Generation At 14:01:53 On 1.10.2024

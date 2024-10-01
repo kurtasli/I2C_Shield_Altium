@@ -1,0 +1,48 @@
+Altium Designer Pick and Place Locations
+D:\ASLI\Hardware Design\Projects\I2C_Shield\Project Outputs for I2C_Shield\Pick Place\Pick Place for I2C_Shield.csv
+
+========================================================================================================================
+File Design Information:
+
+Date:       01.10.24
+Time:       14:01
+Revision:   Not in VersionControl
+Variant:    No variations
+Units used: mm
+
+"Designator","Comment","Layer","Footprint","Center-X(mm)","Center-Y(mm)","Rotation","Description"
+"C6","CL21B104KBCNNNC","TopLayer","CAP_0805","28.4997","24.9255","90","CAP CER 100nF %10 0805"
+"U2","LTC2990IMS#TRPBF","TopLayer","MSOP-10","36.4997","12.8750","90","Ms-System Monitor/Other I2c Temperature, Voltage And Current Monitor"
+"U1","ADXL345BCCZ","TopLayer","14-VFLGA","25.0074","26.9254","90","Analog Devices - ADXL345BCCZ - Mems Accelerometer, 3-AXIS, Digital, X, Y, Z, ± 2G, ± 4G, ± 8G, ± 16G, 2 V, 3.6 V, LGA"
+"SW2","PTS815 SJK 250 SMTR LFS","TopLayer","BUTTON_SMD","8.6707","19.5000","180","Microminiature Top Actuated Tactile Switch Momentary SPST-NO 50mA 12VDC Surface Mount T/R"
+"SW1","PTS815 SJK 250 SMTR LFS","TopLayer","BUTTON_SMD","8.6707","35.7342","180","Microminiature Top Actuated Tactile Switch Momentary SPST-NO 50mA 12VDC Surface Mount T/R"
+"R13","CC0805KRX7R9BB471","TopLayer","CAP_0805","47.4997","23.9500","270","CAP CER 470PF 50V X7R 0805"
+"R12","RL1206FR-070R01L","TopLayer","RES_1206","47.5997","15.3000","270","Res Thick Film 1206 0.01 Ohm 1% 0.25W(1/4W) ±1500ppm/C Pad SMD Automotive T/R"
+"R11","RC0805JR-0710KL","BottomLayer","RES_0805","23.7997","31.9000","270","RES 10K OHM 5% 1/8W 0805"
+"R10","RC0603JR-074K7L","BottomLayer","RES_0603","19.6997","27.3000","270","RES 4K7 %5 OHM 0603 SMD"
+"R9","RC0603JR-074K7L","BottomLayer","RES_0603","19.5997","31.5000","90","RES 4K7 %5 OHM 0603 SMD"
+"R8","RC0805FR-07470RL","TopLayer","RES_0805","36.0166","26.9131","270","RES 470 OHM 1% 1/8W 0805"
+"R7","RC0805FR-07470RL","TopLayer","RES_0805","39.5997","23.3000","180","RES 470 OHM 1% 1/8W 0805"
+"R6","RC0805FR-07470RL","TopLayer","RES_0805","39.5997","30.4700","0","RES 470 OHM 1% 1/8W 0805"
+"R5","RC0805FR-07470RL","TopLayer","RES_0805","43.1895","26.9131","270","RES 470 OHM 1% 1/8W 0805"
+"R4","RC0805FR-07470RL","TopLayer","RES_0805","6.3497","1.8000","180","RES 470 OHM 1% 1/8W 0805"
+"R3","RC0805JR-0710KL","TopLayer","RES_0805","6.7497","16.0000","270","RES 10K OHM 5% 1/8W 0805"
+"R2","RC0805JR-0710KL","TopLayer","RES_0805","6.7497","32.3000","90","RES 10K OHM 5% 1/8W 0805"
+"R1","RC0805FR-07470RL","TopLayer","RES_0805","10.7497","32.5000","270","RES 470 OHM 1% 1/8W 0805"
+"J7","282836-2","TopLayer","TERMINAL","52.8747","27.6000","270","Connector, Terminal Block; Wire Receptacle; 2 Pos.; 16-30 AWG; 0.197 in. CL; Sid"
+"J6","282836-2","TopLayer","TERMINAL","52.8747","15.7750","270","Connector, Terminal Block; Wire Receptacle; 2 Pos.; 16-30 AWG; 0.197 in. CL; Sid"
+"J5","PPTC041LFBN-RC","TopLayer","4x1_Female_Header_2.54mm","17.6274","26.9254","270","CONN HEADER FEMALE 4POS .1 TIN"
+"J4","PPTC081LFBN-RC","TopLayer","8x1_Female_Header_2.54mm","43.1097","50.8000","0","Female, 8C, Straight, .100"CC; 3.20mm Tail, No Mt. 100u" Tin; PBT, Phos Bronze, 105 C"
+"J3","PPTC061LFBN-RC","TopLayer","6x1_Female_Header_2.54mm","45.6497","2.5400","0","Female, 6 C, Straight, .100"CC; 3.20mm Tail, No Mt. 100u" Tin; PBT, Phos Bronze, 105 C"
+"J2","PPTC101LFBN-RC","TopLayer","10x1_Female_Header_2.54mm","18.7257","50.8000","0","10 Position Single Row 2.54 mm Pitch Vertical Through Hole Socket Header"
+"J1","PPTC081LFBN-RC","TopLayer","8x1_Female_Header_2.54mm","25.3297","2.5400","0","Female, 8C, Straight, .100"CC; 3.20mm Tail, No Mt. 100u" Tin; PBT, Phos Bronze, 105 C"
+"D5","LH R974-LP-1","TopLayer","LED_RED_0805","34.4997","26.9131","90","LED Uni-Color Hyper Red 660nm 2-Pin Chip 0805(2012Metric) T/R"
+"D4","LTST-C170KFKT","TopLayer","LED_ORANGE_0805","39.5997","21.6381","0","LED Uni-Color Orange 611nm 2-Pin Chip LED T/R / LED ORANGE CLEAR 0805 SMD"
+"D3","LTST-C171GKT","TopLayer","LED_GREEN_0805","39.5997","32.0381","180","Green 0805 130 º Min 5 mcd Typical 12 mcd Water Clear Lens SMT LED"
+"D2","150080BS75000","TopLayer","LED_BLUE_0805","44.7747","26.9131","90","LED BLUE CLEAR 0805 SMD"
+"D1","LH R974-LP-1","TopLayer","LED_RED_0805","6.3497","3.4500","0","LED Uni-Color Hyper Red 660nm 2-Pin Chip 0805(2012Metric) T/R"
+"C5","CL21B104KBCNNNC","TopLayer","CAP_0805","32.2997","11.9250","0","CAP CER 100nF %10 0805"
+"C4","CL21B104KBCNNNC","TopLayer","CAP_0805","21.3997","25.0000","90","CAP CER 100nF %10 0805"
+"C3","T491A106K010AT","TopLayer","CAP_1206_TANT","30.3247","24.3250","270","Cap Tant Solid 10uF 10V A CASE 10% (3.2 X 1.6 X 1.6mm) SMD 3216-18 4 Ohm 125 C T/R"
+"C2","CL21B104KBCNNNC","TopLayer","CAP_0805","8.4997","16.0000","270","CAP CER 100nF %10 0805"
+"C1","CL21B104KBCNNNC","TopLayer","CAP_0805","7.7997","38.5000","180","CAP CER 100nF %10 0805"
