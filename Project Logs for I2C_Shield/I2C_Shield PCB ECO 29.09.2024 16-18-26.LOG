@@ -1,6 +1,0 @@
-Removed Pin From Net: NetName=V1 Pin=J6-1
-Removed Pin From Net: NetName=V2 Pin=J6-2
-Added Pin To Net: NetName=V2 Pin=J6-1
-Added Pin To Net: NetName=V1 Pin=J6-2
-Added Room: Name=Controllers
-Added Room: Name=Power_Management
